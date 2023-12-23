@@ -3,9 +3,9 @@
 {% block title %}{{ event.title }}{% endblock %}
 
 {% block content %}
-  <h1>{{ event.title }}</h1>
-  <p class="date">{{ event.date_time }}</p>
-  {{ event.description|linebreaks }}
-
+    <h1>{{ event.title }}</h1>
+    <p class="date">{{ event.date_time }}</p>
+    {{ event.description|linebreaks }}
+<a href="{% url 'event:event_edit' event.pk %}">Редактировать мероприятие</a><br>
 <a href="{% url 'event:event_list' %}">На главную</a>
 {% endblock %}

@@ -6,3 +6,6 @@ class Event(models.Model):
     description = models.TextField()
     date_time = models.DateTimeField()
     location = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.title

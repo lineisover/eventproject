@@ -1,0 +1,22 @@
+{% extends "event/base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Сохранить" >
+        <a style="color: red" href="{% url 'event:event_delete' event.pk %}">Удалить мероприятие</a>
+    </form>
+</div>
+<br>
+<br>
+<div>
+    <a href="{% url 'event:event_detail' event.pk %}">Назад</a>
+    <a href="{% url 'event:event_list' %}">На главную</a>
+</div>
+{% endblock %}
