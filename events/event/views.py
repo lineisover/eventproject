@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404, render
 
@@ -5,10 +6,17 @@ from .forms import EventForm
 from .models import Event
 
 
+def index(request):
+    return HttpResponsePermanentRedirect('/events/')
+
+
 def event_list(request):
     events = Event.objects.all()
+    paginator = Paginator(events, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'events': events
+        'page_obj': page_obj
     }
     return render(request, 'event/list.html', context)
 

@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1>Events</h1>
-  {% for event in events %}
+  {% for event in page_obj %}
     <h2>
       <a href="{% url 'event:event_detail' event.id %}">
         {{ event.title }}
@@ -14,4 +14,9 @@
     <p class="date">{{ event.date_time }}</p>
     <p>{{ event.location }}</p>
   {% endfor %}
+    <div>
+      {% for p in page_obj.paginator.page_range %}
+      <a href="?page={{ p }}">{{ p }}</a>
+      {% endfor %}
+    </div>
 {% endblock %}
